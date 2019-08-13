@@ -6,7 +6,7 @@ module.exports = merge(require('./webpack.base'), {
     context: __dirname,
 
     entry: {
-        'index': './src/index.js',
+        index: './src/index.js',
         'index.min': './src/index.js',
     },
 
@@ -17,9 +17,7 @@ module.exports = merge(require('./webpack.base'), {
         libraryTarget: 'umd',
     },
 
-    externals: [
-         'vue',
-    ],
+    externals: ['vue'],
 
     plugins: [
         new webpack.optimize.UglifyJsPlugin({

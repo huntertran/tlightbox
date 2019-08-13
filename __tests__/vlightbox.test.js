@@ -19,7 +19,6 @@ describe('Lightbox', () => {
     });
 
     it('check all props at once', async () => {
-        
         document.body.innerHTML = `
         <div id="app">
             <lightbox :resetstyles="false" title="Demo Gallery" :images="images" :loop="true" :nav="true" :caption="true"></lightbox>
@@ -32,7 +31,6 @@ describe('Lightbox', () => {
     });
 
     it('can accept child gallery item', async () => {
-        
         document.body.innerHTML = `
         <div id="app">
             <lightbox :images="images"></lightbox>
@@ -45,7 +43,6 @@ describe('Lightbox', () => {
     });
 
     it('can accept empty images array', async () => {
-
         document.body.innerHTML = `
         <div id="app">
             <lightbox :images="emptyImages"></lightbox>
@@ -71,8 +68,8 @@ async function createVm() {
                     src: 'https://unsplash.it/501',
                 },
             ],
-            emptyImages: []
-        }
+            emptyImages: [],
+        },
     });
 
     await Vue.nextTick(() => {});

@@ -1,65 +1,67 @@
 {
-  "name": "vlightbox",
+  "name": "tlightbox",
   "version": "2.0.1",
   "description": "Native Vue.js lightbox",
-  "author": "Olivertaylor <olivertaylor18@hotmail.co.uk>",
-  "main": "dist/index.js",
-  "jsnext:main": "src/index.js",
+  "author": "Hunter Tran <hunter.tran.92@outlook.com>",
+  "main": "dist/tlightbox.common.js",
   "scripts": {
-    "start": "webpack-dev-server --config docs/webpack.config.js",
-    "build": "rm -rf dist && NODE_ENV=production webpack",
-    "lint": "eslint --ext .js,.vue --fix src __tests__; exit 0",
-    "prepublish": "npm run test; npm run build",
-    "dev": "node build/dev-server.js",
-    "test": "jest"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build:tlightbox": "vue-cli-service build --target lib --name tlightbox ./src/components/Lightbox.vue",
+    "lint": "vue-cli-service lint"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/olitaylor/vlightbox.git"
+    "url": "https://github.com/huntertran/tlightbox"
   },
   "keywords": [
     "lightbox",
     "vlightbox",
+    "tlightbox",
     "vue",
-    "Oliver Taylor"
+    "Hunter Tran"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/olitaylor/vlightbox/issues"
+    "url": "https://github.com/huntertran/tlightbox/issues"
   },
-  "homepage": "https://github.com/olitaylor/vlightbox",
-  "peerDependencies": {
-    "vue": "^2.3.0"
+  "homepage": "https://github.com/huntertran/tlightbox",
+  "dependencies": {
+    "core-js": "^2.6.5",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.2.0",
+    "vue": "^2.6.10"
   },
   "devDependencies": {
-    "babel-core": "^6.24.1",
-    "babel-loader": "^7.0.0",
-    "babel-plugin-transform-object-rest-spread": "^6.16.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.4.0",
-    "css-loader": "^0.28.1",
-    "eslint": "^3.7.1",
-    "eslint-config-spatie": "^1.1.0",
-    "jest": "^19.0.0",
-    "jest-vue-preprocessor": "^0.2.0",
-    "node-sass": "^4.5.3",
-    "sass-loader": "^6.0.6",
-    "vue": "^2.3.0",
-    "vue-loader": "^12.0.3",
-    "vue-template-compiler": "^2.3.0",
-    "webpack": "^2.3.3",
-    "webpack-dev-server": "^2.4.2",
-    "webpack-merge": "^4.1.0"
+    "@vue/cli-plugin-babel": "^3.10.0",
+    "@vue/cli-plugin-eslint": "^3.10.0",
+    "@vue/cli-service": "^3.10.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue-template-compiler": "^2.6.10"
   },
-  "jest": {
-    "testRegex": "test.js$",
-    "moduleFileExtensions": [
-      "js",
-      "vue"
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
     ],
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor"
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
     }
-  }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
 }

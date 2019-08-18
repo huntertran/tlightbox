@@ -1,12 +1,14 @@
-[![Build Status](https://travis-ci.org/olitaylor/vlightbox.svg?branch=master)](https://travis-ci.org/olitaylor/vlightbox)
+[![Build Status](https://travis-ci.org/huntertran/tlightbox.svg?branch=master)](https://travis-ci.org/huntertran/tlightbox)
 
 
-# vlightbox
+
+
+# tlightbox
 
 > Simple native Vue.js lightbox
 
 ## Demo
-https://olitaylor.github.io/vlightbox/
+https://huntertran.github.io/tlightbox/
 
 ## Install
 
@@ -15,7 +17,7 @@ https://olitaylor.github.io/vlightbox/
 
 #### NPM
 ```bash
-$ npm install vlightbox
+$ npm install tlightbox
 ```
 
 Register the component
@@ -34,10 +36,12 @@ Basic markup should look like this
 Image settings
 
 Accepts array containing image objects, properties accepted are caption and src.
+
 ```js
 images: [
     {
         src: 'https://unsplash.it/500',
+        thumbnail: 'https://unsplash.it/500'
         caption: 'Image 1',
     },
     {
@@ -46,7 +50,7 @@ images: [
 ],
 ```
 
-Other options are;
+**Other options are:**
 
 Remove all styles to the image gallery, overlay not included
 - Default: false
@@ -77,5 +81,3 @@ Show captions on images with the caption property
 ```js
 :caption="true"
 ```
-
-## More features coming soon!

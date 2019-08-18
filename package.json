@@ -1,6 +1,6 @@
 {
   "name": "tlightbox",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Native Vue.js lightbox",
   "author": "Hunter Tran <hunter.tran.92@outlook.com>",
   "main": "./dist/tlightbox.common.js",
@@ -15,11 +15,7 @@
     "url": "https://github.com/huntertran/tlightbox"
   },
   "files": [
-    "dist/*",
-    "src/*",
-    "public/*",
-    "*.json",
-    "*.js"
+    "dist/*.js"
   ],
   "keywords": [
     "lightbox",

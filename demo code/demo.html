@@ -1,0 +1,49 @@
+<meta charset="utf-8" />
+<title>tlightbox demo</title>
+<script src="https://unpkg.com/vue"></script>
+<script src="./tlightbox.umd.js"></script>
+
+<link rel="stylesheet" href="./tlightbox.css" />
+
+<div id="app">
+    <demo :images="album.images" :title="album.title"></demo>
+</div>
+
+<script>
+    new Vue({
+        components: {
+            demo: tlightbox
+        },
+        data: function() {
+            return {
+                album: {
+                    title: "Demo Album",
+                    description: "Just a demo album",
+                    link: "./demo",
+                    images: [
+                        {
+                            src: "./demo/BingWallpaper-2019-08-13.jpg",
+                            thumbnail: "./demo/BingWallpaper-2019-08-13.jpg"
+                        },
+                        {
+                            src: "./demo/BingWallpaper-2019-08-14.jpg",
+                            thumbnail: "./demo/BingWallpaper-2019-08-14.jpg"
+                        },
+                        {
+                            src: "./demo/BingWallpaper-2019-08-15.jpg",
+                            thumbnail: "./demo/BingWallpaper-2019-08-15.jpg"
+                        },
+                        {
+                            src: "./demo/BingWallpaper-2019-08-16.jpg",
+                            thumbnail: "./demo/BingWallpaper-2019-08-16.jpg"
+                        },
+                        {
+                            src: "./demo/8674144741_977557c0a8_b.jpg",
+                            thumbnail: "./demo/8674144741_977557c0a8_b.jpg"
+                        }
+                    ]
+                }
+            };
+        }
+    }).$mount("#app");
+</script>

@@ -3,12 +3,17 @@
         <h1 v-if="title">{{ title }}</h1>
         <ul>
             <li v-bind:key="index" v-for="(image, index) in images">
-                <img :src="image.src" :alt="image.caption" @click="clickImage(index)" />
+                <img :src="image.thumbnail" :alt="image.caption" @click="clickImage(index)" />
             </li>
         </ul>
         <div class="lightbox-overlay" v-if="overlayActive" @click.self="closeOverlay">
             <div class="holder">
-                <img :src="images[currentImage].src" />
+                <div>
+                    <div v-if="isShowLoading" class="lds-heart">
+                        <div></div>
+                    </div>
+                    <img :src="images[currentImageIndex].src" v-on:load="mainImageLoaded" />
+                </div>
                 <div class="nav" v-if="nav">
                     <a class="close" nohref @click="closeOverlay">
                         <span>&times;</span>
@@ -20,13 +25,16 @@
                         <span>&#8594;</span>
                     </a>
                 </div>
-                <p v-if="caption && images[currentImage].caption">{{ images[currentImage].caption }}</p>
+                <p
+                    v-if="caption && images[currentImageIndex].caption"
+                >{{ images[currentImageIndex].caption }}</p>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+
 export default {
     props: {
         resetstyles: {
@@ -54,8 +62,9 @@ export default {
     },
     data() {
         return {
-            currentImage: null,
-            overlayActive: false
+            currentImageIndex: null,
+            overlayActive: false,
+            isShowLoading: true
         };
     },
     mounted() {
@@ -65,26 +74,47 @@ export default {
         });
     },
     methods: {
+        mainImageLoaded() {
+            this.isShowLoading = false;
+        },
         clickImage(index) {
-            this.currentImage = index;
+            this.currentImageIndex = index;
             this.overlayActive = true;
+
+            this.preloadNextImage();
+        },
+        preloadNextImage() {
+            var nextImageIndex = 0;
+
+            if (this.currentImageIndex === this.images.length - 1) {
+                if (this.loop) {
+                    nextImageIndex = 0;
+                }
+            } else {
+                nextImageIndex = this.currentImageIndex + 1;
+            }
+
+            var newImageToCache = new Image();
+            newImageToCache.src = this.images[nextImageIndex].src;
         },
         nextImage() {
-            if (this.currentImage === this.images.length - 1) {
+            if (this.currentImageIndex === this.images.length - 1) {
                 if (this.loop) {
-                    this.currentImage = 0;
+                    this.currentImageIndex = 0;
                 }
             } else {
-                this.currentImage += 1;
+                this.currentImageIndex += 1;
             }
+
+            this.preloadNextImage();
         },
         prevImage() {
-            if (this.currentImage === 0) {
+            if (this.currentImageIndex === 0) {
                 if (this.loop) {
-                    this.currentImage = this.images.length - 1;
+                    this.currentImageIndex = this.images.length - 1;
                 }
             } else {
-                this.currentImage -= 1;
+                this.currentImageIndex -= 1;
             }
         },
         closeOverlay() {
@@ -141,20 +171,22 @@ export default {
     text-align: center;
     padding: 20px;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
 
     .holder {
-        max-width: 600px;
-        margin: 0 auto;
+        max-width: 90%;
+        max-height: 90%;
         position: relative;
-        max-height: 100vh;
-
-        img {
-            width: 100%;
-            max-width: 600px;
+        > div {
             cursor: pointer;
-            box-sizing: border-box;
-            display: block;
-            max-height: 100vh;
+            img {
+                max-width: 90vw;
+                max-height: 90vh;
+                cursor: pointer;
+            }
         }
 
         p {
@@ -165,16 +197,13 @@ export default {
             bottom: 0;
             left: 0;
             right: 0;
-            box-sizing: border-box;
             padding: 10px;
         }
         .nav {
-            max-width: 600px;
-            margin: 0 auto;
             font-size: 14px;
 
             a {
-                color: white;
+                color: white !important;
                 opacity: 0.3;
                 -webkit-user-select: none;
                 cursor: pointer;
@@ -213,7 +242,7 @@ export default {
             .close {
                 right: 10px;
                 top: 0;
-                font-size: 30px;
+                font-size: 30px !important;
                 opacity: 0.6;
                 z-index: 1000000;
                 position: absolute;
@@ -224,6 +253,70 @@ export default {
                     opacity: 1;
                 }
             }
+        }
+    }
+}
+
+// loading symbol
+@keyframes lds-heart {
+    0% {
+        transform: scale(0.95);
+    }
+    5% {
+        transform: scale(1.1);
+    }
+    39% {
+        transform: scale(0.85);
+    }
+    45% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(0.9);
+    }
+}
+
+.lds-heart {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 64px;
+    height: 64px;
+    transform: rotate(45deg);
+    transform-origin: 32px 32px;
+    div {
+        top: 23px;
+        left: 19px;
+        position: absolute;
+        width: 26px;
+        height: 26px;
+        background: #fff;
+        animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        &:after {
+            content: " ";
+            position: absolute;
+            display: block;
+            width: 26px;
+            height: 26px;
+            background: #fff;
+            top: -17px;
+            border-radius: 50% 50% 0 0;
+        }
+        &:before {
+            content: " ";
+            position: absolute;
+            display: block;
+            width: 26px;
+            height: 26px;
+            background: #fff;
+            left: -17px;
+            border-radius: 50% 0 0 50%;
         }
     }
 }

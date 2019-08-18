@@ -1,18 +1,54 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <Lightbox msg="Welcome to Your Vue.js App"/>
+    <lightbox :images="convertImages(album.images)"/>
   </div>
 </template>
 
 <script>
-import Lightbox from './components/Lightbox.vue'
+import Axios from "axios";
+import lightbox from './components/Lightbox.vue'
 
 export default {
   name: 'app',
   components: {
-    Lightbox
-  }
+    lightbox
+  },
+    data: function() {
+        return {
+            album: {
+                title: "",
+                description: "",
+                link: "",
+                images: []
+            }
+        };
+    },
+    mounted: function() {
+        this.getAlbum();
+    },
+    methods: {
+        getAlbum: function() {
+            var _this = this;
+            Axios.get("/albums/demo.json").then(function(response) {
+                _this.album = response.data;
+            });
+        },
+        convertImages: function(images) {
+            var converted = [];
+
+            if (images) {
+                images.forEach(function(value) {
+
+                    converted.push({
+                        src: value,
+                        thumbnail: value
+                    });
+                });
+            }
+
+            return converted;
+        }
+    }
 }
 </script>
 

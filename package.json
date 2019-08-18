@@ -27,10 +27,12 @@
   },
   "homepage": "https://github.com/huntertran/tlightbox",
   "dependencies": {
+    "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.2.0",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "webpack": "^4.39.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.10.0",
@@ -53,11 +55,6 @@
     "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
     }
   },
   "browserslist": [

@@ -1,26 +1,43 @@
 [![Build Status](https://travis-ci.org/huntertran/tlightbox.svg?branch=master)](https://travis-ci.org/huntertran/tlightbox)
 
+<!-- TOC -->
+
+- [1. Demo](#1-demo)
+- [2. Install](#2-install)
+    - [2.1. Vue Compatibility](#21-vue-compatibility)
+    - [2.2. NPM](#22-npm)
+- [3. Usage](#3-usage)
+    - [3.1. Register the component](#31-register-the-component)
+    - [3.2. Image settings](#32-image-settings)
+    - [3.3. Other options](#33-other-options)
+
+<!-- /TOC -->
 
 
+Simple native Vue.js lightbox
 
-# tlightbox
-
-> Simple native Vue.js lightbox
-
-## Demo
+# 1. Demo
+<a id="markdown-1-demo" name="1-demo"></a>
 https://huntertran.github.io/tlightbox/
 
-## Install
+# 2. Install
+<a id="markdown-2-install" name="2-install"></a>
 
-###### Vue Compatibility
+## 2.1. Vue Compatibility
+<a id="markdown-21-vue-compatibility" name="21-vue-compatibility"></a>
 > Compatible with Vue 2.0
 
-#### NPM
+## 2.2. NPM
+<a id="markdown-22-npm" name="22-npm"></a>
 ```bash
 $ npm install tlightbox
 ```
 
-Register the component
+# 3. Usage
+<a id="markdown-3-usage" name="3-usage"></a>
+
+## 3.1. Register the component
+<a id="markdown-31-register-the-component" name="31-register-the-component"></a>
 
 ```js
 import lightbox from 'vlightbox';
@@ -33,7 +50,8 @@ Basic markup should look like this
 <lightbox :images="images"></lightbox>
 ```
 
-Image settings
+## 3.2. Image settings
+<a id="markdown-32-image-settings" name="32-image-settings"></a>
 
 Accepts array containing image objects, properties accepted are caption and src.
 
@@ -50,7 +68,8 @@ images: [
 ],
 ```
 
-**Other options are:**
+## 3.3. Other options
+<a id="markdown-33-other-options" name="33-other-options"></a>
 
 Remove all styles to the image gallery, overlay not included
 - Default: false

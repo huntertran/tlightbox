@@ -1,9 +1,7 @@
 <meta charset="utf-8" />
 <title>tlightbox demo</title>
-<script src="https://unpkg.com/vue"></script>
-<script src="./tlightbox.umd.js"></script>
-
-<link rel="stylesheet" href="./tlightbox.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="./tlightbox.umd.min.js"></script>
 
 <div id="app">
     <demo :images="album.images" :title="album.title"></demo>
@@ -43,7 +41,8 @@
                         },
                         {
                             src: "./demo/8674144741_977557c0a8_b.jpg",
-                            thumbnail: "./demo/8674144741_977557c0a8_b.jpg"
+                            thumbnail: "./demo/8674144741_977557c0a8_b.jpg",
+                            caption: "Lorem isum 5"
                         }
                     ]
                 }

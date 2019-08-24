@@ -6,7 +6,7 @@
                 <img :src="image.thumbnail" :alt="image.caption" @click="clickImage(index)" />
             </li>
         </ul>
-        <div class="tlightbox-overlay" v-if="overlayActive" @click.self="closeOverlay">
+        <div class="overlay" v-if="overlayActive" @click.self="closeOverlay">
             <div class="holder">
                 <div>
                     <HeartLoading :isShowLoading="isShowHeartLoading"></HeartLoading>
@@ -181,114 +181,118 @@ $background: black;
     );
 }
 
-.tlightbox ul {
-    list-style: none;
-    margin: 0 auto;
-    padding: 0;
-    display: block;
-    max-width: 780px;
-    text-align: center;
+.tlightbox {
+    > h1 {
+        text-align: center;
+    }
+    > ul {
+        list-style: none;
+        margin: 0 auto;
+        padding: 0;
+        display: block;
+        max-width: 780px;
+        text-align: center;
 
-    li {
-        @include backgroundWithOpacity(0.6);
-        display: inline-block;
-        padding: 5px;
-        margin: 10px;
+        > li {
+            @include backgroundWithOpacity(0.6);
+            display: inline-block;
+            padding: 5px;
+            margin: 10px;
 
-        img {
-            display: block;
-            width: 200px;
+            > img {
+                display: block;
+                width: 200px;
+            }
         }
     }
-}
+    > .overlay {
+        @include backgroundWithOpacity(0.9);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
 
-.tlightbox-overlay {
-    @include backgroundWithOpacity(0.9);
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-
-    > .holder {
-        position: relative;
-        > div {
-            > img {
-                max-width: 90vw;
-                max-height: 90vh;
-                cursor: pointer;
+        > .holder {
+            position: relative;
+            > div {
+                > img {
+                    max-width: 90vw;
+                    max-height: 90vh;
+                    cursor: pointer;
+                }
             }
-        }
 
-        > p {
-            @include backgroundWithOpacity(0.4);
-            color: $foreground;
-            margin: 0;
-            position: absolute;
-            bottom: 4px;
-            left: 0;
-            right: 0;
-            padding: 10px;
-        }
-        > .nav {
-            font-size: 14px;
-
-            > a {
+            > p {
+                @include backgroundWithOpacity(0.4);
                 color: $foreground;
-                opacity: 0.3;
-                -webkit-user-select: none;
-                cursor: pointer;
-
-                &:hover {
-                    opacity: 1;
-                }
-            }
-
-            > .next,
-            .prev {
+                margin: 0;
                 position: absolute;
-                top: 0;
                 bottom: 0;
-                padding: 10px;
-                width: 50%;
-                box-sizing: border-box;
-                font-size: 40px;
-
-                > span {
-                    top: 50%;
-                    transform: translateY(50%);
-                    position: relative;
-                }
-            }
-
-            > .next {
-                right: 0;
-                text-align: right;
-            }
-
-            > .prev {
                 left: 0;
-                text-align: left;
+                right: 0;
+                padding: 10px;
             }
-            > .close {
-                right: 10px;
-                top: 0;
-                font-size: 30px;
-                opacity: 0.6;
-                z-index: 1000000;
-                position: absolute;
-                text-align: left;
-                box-sizing: border-box;
+            > .nav {
+                font-size: 14px;
 
-                &:hover {
-                    opacity: 1;
+                > a {
+                    color: $foreground;
+                    opacity: 0.3;
+                    -webkit-user-select: none;
+                    cursor: pointer;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+
+                > .next,
+                .prev {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    padding: 10px;
+                    width: 50%;
+                    box-sizing: border-box;
+                    font-size: 40px;
+
+                    > span {
+                        top: 50%;
+                        transform: translateY(50%);
+                        position: relative;
+                    }
+                }
+
+                > .next {
+                    right: 0;
+                    text-align: right;
+                }
+
+                > .prev {
+                    left: 0;
+                    text-align: left;
+                }
+                > .close {
+                    right: 10px;
+                    top: 0;
+                    font-size: 30px;
+                    opacity: 0.6;
+                    z-index: 1000000;
+                    position: absolute;
+                    text-align: left;
+                    box-sizing: border-box;
+
+                    &:hover {
+                        opacity: 1;
+                    }
                 }
             }
         }

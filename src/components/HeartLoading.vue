@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isShowLoading" class="lds-heart">
+    <div v-if="isShowLoading" class="tlightbox-heart-loading">
         <div></div>
     </div>
 </template>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@keyframes lds-heart {
+@keyframes tlightbox-heart-loading {
     0% {
         transform: scale(0.95);
     }
@@ -37,7 +37,7 @@ export default {
     }
 }
 
-.lds-heart {
+.tlightbox-heart-loading {
     position: absolute;
     top: 0;
     left: 0;
@@ -55,7 +55,7 @@ export default {
         width: 26px;
         height: 26px;
         background: #fff;
-        animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        animation: tlightbox-heart-loading 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
         &:after {
             content: " ";
             position: absolute;

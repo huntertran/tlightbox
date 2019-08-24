@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isShowLoading" class="lds-dual-ring"></div>
+    <div v-if="isShowLoading" class="tlightbox-normal-loading"></div>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@keyframes lds-dual-ring {
+@keyframes tlightbox-normal-loading {
     0% {
         transform: rotate(0deg);
     }
@@ -22,7 +22,7 @@ export default {
         transform: rotate(360deg);
     }
 }
-.lds-dual-ring {
+.tlightbox-normal-loading {
     position: absolute;
     top: 0;
     left: 0;
@@ -40,7 +40,7 @@ export default {
         border-radius: 50%;
         border: 5px solid #fff;
         border-color: #fff transparent #fff transparent;
-        animation: lds-dual-ring 1.2s linear infinite;
+        animation: tlightbox-normal-loading 1.2s linear infinite;
     }
 }
 </style>

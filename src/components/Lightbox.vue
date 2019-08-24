@@ -1,12 +1,12 @@
 <template>
-    <div :class="{ 'vue-lightbox' : !resetstyles }">
+    <div :class="{ 'tlightbox' : !resetstyles }">
         <h1 v-if="title">{{ title }}</h1>
         <ul>
             <li v-bind:key="index" v-for="(image, index) in images">
                 <img :src="image.thumbnail" :alt="image.caption" @click="clickImage(index)" />
             </li>
         </ul>
-        <div class="lightbox-overlay" v-if="overlayActive" @click.self="closeOverlay">
+        <div class="tlightbox-overlay" v-if="overlayActive" @click.self="closeOverlay">
             <div class="holder">
                 <div>
                     <HeartLoading :isShowLoading="isShowHeartLoading"></HeartLoading>
@@ -169,7 +169,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.vue-lightbox ul {
+$foreground: white;
+$background: black;
+
+@mixin backgroundWithOpacity($opacity) {
+    background-color: rgba(
+        red($background),
+        green($background),
+        blue($background),
+        $opacity
+    );
+}
+
+.tlightbox ul {
     list-style: none;
     margin: 0 auto;
     padding: 0;
@@ -178,9 +190,9 @@ export default {
     text-align: center;
 
     li {
+        @include backgroundWithOpacity(0.6);
         display: inline-block;
         padding: 5px;
-        background: ghostwhite;
         margin: 10px;
 
         img {
@@ -190,13 +202,13 @@ export default {
     }
 }
 
-.lightbox-overlay {
+.tlightbox-overlay {
+    @include backgroundWithOpacity(0.9);
     width: 100%;
     height: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.9);
     text-align: center;
     padding: 20px;
     box-sizing: border-box;
@@ -205,34 +217,31 @@ export default {
     justify-content: center;
     z-index: 9999;
 
-    .holder {
-        max-width: 90%;
-        max-height: 90%;
+    > .holder {
         position: relative;
         > div {
-            cursor: pointer;
-            img {
+            > img {
                 max-width: 90vw;
                 max-height: 90vh;
                 cursor: pointer;
             }
         }
 
-        p {
-            color: #ffffff;
+        > p {
+            @include backgroundWithOpacity(0.4);
+            color: $foreground;
             margin: 0;
-            background-color: rgba(0, 0, 0, 0.4);
             position: absolute;
-            bottom: 0;
+            bottom: 4px;
             left: 0;
             right: 0;
             padding: 10px;
         }
-        .nav {
+        > .nav {
             font-size: 14px;
 
-            a {
-                color: white !important;
+            > a {
+                color: $foreground;
                 opacity: 0.3;
                 -webkit-user-select: none;
                 cursor: pointer;
@@ -242,7 +251,7 @@ export default {
                 }
             }
 
-            .next,
+            > .next,
             .prev {
                 position: absolute;
                 top: 0;
@@ -252,26 +261,26 @@ export default {
                 box-sizing: border-box;
                 font-size: 40px;
 
-                span {
+                > span {
                     top: 50%;
                     transform: translateY(50%);
                     position: relative;
                 }
             }
 
-            .next {
+            > .next {
                 right: 0;
                 text-align: right;
             }
 
-            .prev {
+            > .prev {
                 left: 0;
                 text-align: left;
             }
-            .close {
+            > .close {
                 right: 10px;
                 top: 0;
-                font-size: 30px !important;
+                font-size: 30px;
                 opacity: 0.6;
                 z-index: 1000000;
                 position: absolute;

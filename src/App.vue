@@ -40,7 +40,8 @@ export default {
                 images.forEach(function(value) {
                     converted.push({
                         src: value,
-                        thumbnail: value
+                        thumbnail: value,
+                        caption: "Lorem Isum"
                     });
                 });
             }

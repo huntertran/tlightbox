@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import HeartLoading from './HeartLoading';
-import NormalLoading from './NormalLoading';
+import HeartLoading from "./HeartLoading";
+import NormalLoading from "./NormalLoading";
 
 export default {
     components: {
@@ -69,7 +69,7 @@ export default {
             type: Boolean
         },
         loadingStyle: {
-            default: 'normal',
+            default: "normal",
             type: String
         }
     },
@@ -81,38 +81,38 @@ export default {
         };
     },
     computed: {
-        isShowHeartLoading: function(){
-            if(this.isShowLoadingData && this.loadingStyle != 'normal'){
+        isShowHeartLoading: function() {
+            if (this.isShowLoadingData && this.loadingStyle != "normal") {
                 return true;
             }
 
             return false;
         },
-        isShowNormalLoading: function(){
-            if(this.isShowLoadingData && this.loadingStyle == 'normal'){
+        isShowNormalLoading: function() {
+            if (this.isShowLoadingData && this.loadingStyle == "normal") {
                 return true;
             }
 
             return false;
         }
     },
-    mounted() {
+    mounted: function() {
         const self = this;
         window.addEventListener("keydown", e => {
             self.handleGlobalKeyDown(e);
         });
     },
     methods: {
-        mainImageLoaded() {
+        mainImageLoaded: function() {
             this.isShowLoadingData = false;
         },
-        clickImage(index) {
+        clickImage: function(index) {
             this.currentImageIndex = index;
             this.overlayActive = true;
 
             this.preloadNextImage();
         },
-        preloadNextImage() {
+        preloadNextImage: function() {
             var nextImageIndex = 0;
 
             if (this.currentImageIndex === this.images.length - 1) {
@@ -126,7 +126,7 @@ export default {
             var newImageToCache = new Image();
             newImageToCache.src = this.images[nextImageIndex].src;
         },
-        nextImage() {
+        nextImage: function() {
             if (this.currentImageIndex === this.images.length - 1) {
                 if (this.loop) {
                     this.currentImageIndex = 0;
@@ -137,7 +137,7 @@ export default {
 
             this.preloadNextImage();
         },
-        prevImage() {
+        prevImage: function() {
             if (this.currentImageIndex === 0) {
                 if (this.loop) {
                     this.currentImageIndex = this.images.length - 1;
@@ -146,10 +146,10 @@ export default {
                 this.currentImageIndex -= 1;
             }
         },
-        closeOverlay() {
+        closeOverlay: function() {
             this.overlayActive = false;
         },
-        handleGlobalKeyDown(e) {
+        handleGlobalKeyDown: function(e) {
             switch (e.keyCode) {
                 case 37:
                     this.prevImage();

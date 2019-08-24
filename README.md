@@ -40,7 +40,7 @@ $ npm install tlightbox
 <a id="markdown-31-register-the-component" name="31-register-the-component"></a>
 
 ```js
-import lightbox from 'vlightbox';
+import lightbox from 'tlightbox';
 Vue.use(lightbox);
 ```
 
@@ -72,31 +72,44 @@ images: [
 <a id="markdown-33-other-options" name="33-other-options"></a>
 
 Remove all styles to the image gallery, overlay not included
-- Default: false
+- Default: `false`
+
 ```js
 :resetstyles="false" 
 ```
 
 Add h1 with title above gallery
 - Default: null
+
 ```js
-title="Demo Gallery" 
+:title="Demo Gallery" 
+```
+
+Show loading when image is not downloaded
+- Default: `true`
+
+Setup loading styles: Normal or Heart Icon
+- Default: `normal`
+
+```html
+<lightbox :isShowLoading='true' :loadingStyle='heart'></lightbox>
 ```
 
 Loop back to the first image when at the end of the gallery
-- Default: true
+- Default: `true`
+
 ```js
 :loop="true" 
 ```
 
 Show next, back and close buttons on overlay
-- Default: true
+- Default: `true`
 ```js
 :nav="true" 
 ```
 
 Show captions on images with the caption property
-- Default: true
+- Default: `true`
 ```js
 :caption="true"
 ```

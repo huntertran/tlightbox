@@ -1,6 +1,6 @@
 {
   "name": "tlightbox",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Native Vue.js lightbox",
   "author": "Hunter Tran <hunter.tran.92@outlook.com>",
   "main": "./dist/tlightbox.common.js",

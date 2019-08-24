@@ -9,9 +9,8 @@
         <div class="lightbox-overlay" v-if="overlayActive" @click.self="closeOverlay">
             <div class="holder">
                 <div>
-                    <div v-if="isShowLoading" class="lds-heart">
-                        <div></div>
-                    </div>
+                    <HeartLoading :isShowLoading="isShowHeartLoading"></HeartLoading>
+                    <NormalLoading :isShowLoading="isShowNormalLoading"></NormalLoading>
                     <img :src="images[currentImageIndex].src" v-on:load="mainImageLoaded" />
                 </div>
                 <div class="nav" v-if="nav">
@@ -34,8 +33,14 @@
 </template>
 
 <script>
+import HeartLoading from './HeartLoading';
+import NormalLoading from './NormalLoading';
 
 export default {
+    components: {
+        HeartLoading,
+        NormalLoading
+    },
     props: {
         resetstyles: {
             default: false,
@@ -58,14 +63,38 @@ export default {
         caption: {
             default: true,
             type: Boolean
+        },
+        isShowLoading: {
+            default: true,
+            type: Boolean
+        },
+        loadingStyle: {
+            default: 'normal',
+            type: String
         }
     },
-    data() {
+    data: function() {
         return {
             currentImageIndex: null,
-            overlayActive: false,
-            isShowLoading: true
+            isShowLoadingData: this.isShowLoading,
+            overlayActive: false
         };
+    },
+    computed: {
+        isShowHeartLoading: function(){
+            if(this.isShowLoadingData && this.loadingStyle != 'normal'){
+                return true;
+            }
+
+            return false;
+        },
+        isShowNormalLoading: function(){
+            if(this.isShowLoadingData && this.loadingStyle == 'normal'){
+                return true;
+            }
+
+            return false;
+        }
     },
     mounted() {
         const self = this;
@@ -75,7 +104,7 @@ export default {
     },
     methods: {
         mainImageLoaded() {
-            this.isShowLoading = false;
+            this.isShowLoadingData = false;
         },
         clickImage(index) {
             this.currentImageIndex = index;
@@ -253,70 +282,6 @@ export default {
                     opacity: 1;
                 }
             }
-        }
-    }
-}
-
-// loading symbol
-@keyframes lds-heart {
-    0% {
-        transform: scale(0.95);
-    }
-    5% {
-        transform: scale(1.1);
-    }
-    39% {
-        transform: scale(0.85);
-    }
-    45% {
-        transform: scale(1);
-    }
-    60% {
-        transform: scale(0.95);
-    }
-    100% {
-        transform: scale(0.9);
-    }
-}
-
-.lds-heart {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    width: 64px;
-    height: 64px;
-    transform: rotate(45deg);
-    transform-origin: 32px 32px;
-    div {
-        top: 23px;
-        left: 19px;
-        position: absolute;
-        width: 26px;
-        height: 26px;
-        background: #fff;
-        animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-        &:after {
-            content: " ";
-            position: absolute;
-            display: block;
-            width: 26px;
-            height: 26px;
-            background: #fff;
-            top: -17px;
-            border-radius: 50% 50% 0 0;
-        }
-        &:before {
-            content: " ";
-            position: absolute;
-            display: block;
-            width: 26px;
-            height: 26px;
-            background: #fff;
-            left: -17px;
-            border-radius: 50% 0 0 50%;
         }
     }
 }

@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/huntertran/tlightbox.svg?branch=master)](https://travis-ci.org/huntertran/tlightbox)
+[![Build Status](https://github.com/huntertran/tlightbox/workflows/Node%20CI/badge.svg)
+[![Publish Status](https://github.com/huntertran/tlightbox/workflows/Node.js%20Package/badge.svg)
 
 <!-- TOC -->
 

@@ -1,6 +1,5 @@
-[![Build Status](https://github.com/huntertran/tlightbox/workflows/Node%20CI/badge.svg)
-
-[![Publish Status](https://github.com/huntertran/tlightbox/workflows/Node.js%20Package/badge.svg)
+![Build Status](https://github.com/huntertran/tlightbox/workflows/Node%20CI/badge.svg)
+![Publish Status](https://github.com/huntertran/tlightbox/workflows/Node.js%20Package/badge.svg)
 
 <!-- TOC -->
 

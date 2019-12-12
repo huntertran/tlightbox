@@ -1,49 +1,30 @@
 {
   "name": "@huntertran/tlightbox",
-  "version": "2.1.1",
+  "version": "3.1.1",
   "description": "Native Vue.js lightbox",
   "author": "Hunter Tran <hunter.tran.92@outlook.com>",
-  "main": "./dist/tlightbox.common.js",
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:tlightbox": "vue-cli-service build --target lib --name tlightbox ./src/components/Lightbox.vue",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build:tlightbox": "vue-cli-service build --target lib --name tlightbox ./src/components/Lightbox.vue"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/huntertran/tlightbox.git"
-  },
+  "main": "./dist/tlightbox.common.js",
   "files": [
     "dist/*.js"
   ],
-  "keywords": [
-    "lightbox",
-    "vlightbox",
-    "tlightbox",
-    "vue",
-    "Hunter Tran"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/huntertran/tlightbox/issues"
-  },
-  "homepage": "https://github.com/huntertran/tlightbox",
   "dependencies": {
     "axios": "^0.19.0",
-    "core-js": "^2.6.5",
+    "core-js": "^3.4.3",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.2.0",
     "vue": "^2.6.10",
     "webpack": "^4.39.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.10.0",
-    "@vue/cli-plugin-eslint": "^3.10.0",
-    "@vue/cli-service": "^3.10.0",
+    "@vue/cli-plugin-babel": "^4.1.1",
+    "@vue/cli-plugin-eslint": "^4.1.1",
+    "@vue/cli-service": "^4.1.1",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
@@ -66,5 +47,24 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/huntertran/tlightbox/issues"
+  },
+  "homepage": "https://github.com/huntertran/tlightbox",
+  "keywords": [
+    "lightbox",
+    "vlightbox",
+    "tlightbox",
+    "vue",
+    "Hunter Tran"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huntertran/tlightbox.git"
+  }
 }

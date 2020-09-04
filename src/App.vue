@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import Axios from "axios";
 import lightbox from "./components/Lightbox.vue";
 
 export default {
@@ -29,9 +28,9 @@ export default {
     methods: {
         getAlbum: function() {
             var _this = this;
-            Axios.get("/albums/demo.json").then(function(response) {
-                _this.album = response.data;
-            });
+            fetch("/albums/demo.json")
+                .then(response => response.json())
+                .then(data => _this.album = data);
         },
         convertImages: function(images) {
             var converted = [];

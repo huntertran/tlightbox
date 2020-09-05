@@ -1,5 +1,5 @@
 {
-  "name": "@hunter.tran/tlightbox",
+  "name": "tlightbox",
   "version": "3.1.2",
   "description": "Native Vue.js lightbox",
   "author": "Hunter Tran <hunter.tran.92@outlook.com>",
